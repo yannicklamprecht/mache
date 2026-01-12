@@ -4,6 +4,10 @@ plugins {
     id("io.papermc.sculptor.version") version "2.0.0-SNAPSHOT"
 }
 
+repositories {
+    mavenLocal()
+}
+
 val generateReportsProperty = providers.gradleProperty("generateReports")
 mache {
     minecraftVersion = "26.1-snapshot-1"
@@ -33,7 +37,7 @@ tasks.withType<JavaCompile>().configureEach {
 
 dependencies {
     codebook("2.0.0-SNAPSHOT")
-    decompiler(vineflower("1.11.2"))
+    decompiler(vineflower("1.12.0+local"))
     constants("io.papermc.parchment.data:parchment:1.21.11+build.3")
 }
 
