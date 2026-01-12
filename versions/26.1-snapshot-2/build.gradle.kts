@@ -10,7 +10,7 @@ repositories {
 
 val generateReportsProperty = providers.gradleProperty("generateReports")
 mache {
-    minecraftVersion = "26.1-snapshot-1"
+    minecraftVersion = "26.1-snapshot-2"
     minecraftJarType = MinecraftJarType.SERVER
 
     val args = mutableListOf(
