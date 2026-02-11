@@ -5,12 +5,13 @@ plugins {
 }
 
 repositories {
+    mavenLocal()
     maven("https://central.sonatype.com/repository/maven-snapshots/")
 }
 
 val generateReportsProperty = providers.gradleProperty("generateReports")
 mache {
-    minecraftVersion = "26.1-snapshot-6"
+    minecraftVersion = "26.1-snapshot-7"
     minecraftJarType = MinecraftJarType.SERVER
 
     val args = mutableListOf(
@@ -37,7 +38,7 @@ tasks.withType<JavaCompile>().configureEach {
 
 dependencies {
     codebook("2.0.0-SNAPSHOT")
-    decompiler(vineflower("1.12.0-SNAPSHOT"))
+    decompiler(vineflower("1.12.0+local"))
     constants("io.papermc.parchment.data:parchment:1.21.11+build.3")
 }
 

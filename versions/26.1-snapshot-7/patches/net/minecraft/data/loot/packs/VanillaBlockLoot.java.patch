@@ -1,0 +1,97 @@
+--- a/net/minecraft/data/loot/packs/VanillaBlockLoot.java
++++ b/net/minecraft/data/loot/packs/VanillaBlockLoot.java
+@@ -933,11 +_,11 @@
+                                 LootItem.lootTableItem(block)
+                                     .apply(
+                                         List.of(2, 3, 4),
+-                                        count -> SetItemCountFunction.setCount(ConstantValue.exactly(count.intValue()))
++                                        count -> SetItemCountFunction.setCount(ConstantValue.exactly(count))
+                                             .when(
+                                                 LootItemBlockStatePropertyCondition.hasBlockStateProperties(block)
+                                                     .setProperties(
+-                                                        StatePropertiesPredicate.Builder.properties().hasProperty(SeaPickleBlock.PICKLES, count.intValue())
++                                                        StatePropertiesPredicate.Builder.properties().hasProperty(SeaPickleBlock.PICKLES, count)
+                                                     )
+                                             )
+                                     )
+@@ -1221,7 +_,7 @@
+             Blocks.NETHER_GOLD_ORE,
+             block -> this.createSilkTouchDispatchTable(
+                 block,
+-                (LootPoolEntryContainer.Builder<?>)this.applyExplosionDecay(
++                this.applyExplosionDecay(
+                     block,
+                     LootItem.lootTableItem(Items.GOLD_NUGGET)
+                         .apply(SetItemCountFunction.setCount(UniformGenerator.between(2.0F, 6.0F)))
+@@ -1295,7 +_,7 @@
+             Blocks.MELON,
+             block -> this.createSilkTouchDispatchTable(
+                 block,
+-                (LootPoolEntryContainer.Builder<?>)this.applyExplosionDecay(
++                this.applyExplosionDecay(
+                     block,
+                     LootItem.lootTableItem(Items.MELON_SLICE)
+                         .apply(SetItemCountFunction.setCount(UniformGenerator.between(3.0F, 7.0F)))
+@@ -1323,7 +_,7 @@
+             Blocks.CREAKING_HEART,
+             block -> this.createSilkTouchDispatchTable(
+                 block,
+-                (LootPoolEntryContainer.Builder<?>)this.applyExplosionDecay(
++                this.applyExplosionDecay(
+                     block,
+                     LootItem.lootTableItem(Items.RESIN_CLUMP)
+                         .apply(SetItemCountFunction.setCount(UniformGenerator.between(1.0F, 3.0F)))
+@@ -1374,10 +_,10 @@
+                                             .when(
+                                                 LootItemBlockStatePropertyCondition.hasBlockStateProperties(block)
+                                                     .setProperties(
+-                                                        StatePropertiesPredicate.Builder.properties().hasProperty(SnowLayerBlock.LAYERS, layers.intValue())
++                                                        StatePropertiesPredicate.Builder.properties().hasProperty(SnowLayerBlock.LAYERS, layers)
+                                                     )
+                                             )
+-                                            .apply(SetItemCountFunction.setCount(ConstantValue.exactly(layers.intValue())))
++                                            .apply(SetItemCountFunction.setCount(ConstantValue.exactly(layers)))
+                                     )
+                                     .when(this.doesNotHaveSilkTouch()),
+                                 AlternativesEntry.alternatives(
+@@ -1385,11 +_,11 @@
+                                     layers -> layers == 8
+                                         ? LootItem.lootTableItem(Blocks.SNOW_BLOCK)
+                                         : LootItem.lootTableItem(Blocks.SNOW)
+-                                            .apply(SetItemCountFunction.setCount(ConstantValue.exactly(layers.intValue())))
++                                            .apply(SetItemCountFunction.setCount(ConstantValue.exactly(layers)))
+                                             .when(
+                                                 LootItemBlockStatePropertyCondition.hasBlockStateProperties(block)
+                                                     .setProperties(
+-                                                        StatePropertiesPredicate.Builder.properties().hasProperty(SnowLayerBlock.LAYERS, layers.intValue())
++                                                        StatePropertiesPredicate.Builder.properties().hasProperty(SnowLayerBlock.LAYERS, layers)
+                                                     )
+                                             )
+                                 )
+@@ -1435,7 +_,7 @@
+             Blocks.SOUL_CAMPFIRE,
+             block -> this.createSilkTouchDispatchTable(
+                 block,
+-                (LootPoolEntryContainer.Builder<?>)this.applyExplosionCondition(
++                this.applyExplosionCondition(
+                     block, LootItem.lootTableItem(Items.SOUL_SOIL).apply(SetItemCountFunction.setCount(ConstantValue.exactly(1.0F)))
+                 )
+             )
+@@ -1449,7 +_,7 @@
+                     .apply(ApplyBonusCount.addOreBonusCount(enchantments.getOrThrow(Enchantments.FORTUNE)))
+                     .when(MatchTool.toolMatches(ItemPredicate.Builder.item().of(items, ItemTags.CLUSTER_MAX_HARVESTABLES)))
+                     .otherwise(
+-                        (LootPoolEntryContainer.Builder<?>)this.applyExplosionDecay(
++                        this.applyExplosionDecay(
+                             block, LootItem.lootTableItem(Items.AMETHYST_SHARD).apply(SetItemCountFunction.setCount(ConstantValue.exactly(2.0F)))
+                         )
+                     )
+@@ -1598,7 +_,7 @@
+                                     LootItemBlockStatePropertyCondition.Builder isAge = LootItemBlockStatePropertyCondition.hasBlockStateProperties(
+                                             Blocks.PITCHER_CROP
+                                         )
+-                                        .setProperties(StatePropertiesPredicate.Builder.properties().hasProperty(PitcherCropBlock.AGE, age.intValue()));
++                                        .setProperties(StatePropertiesPredicate.Builder.properties().hasProperty(PitcherCropBlock.AGE, age));
+                                     return age == 4
+                                         ? LootItem.lootTableItem(Items.PITCHER_PLANT)
+                                             .when(isAge)
